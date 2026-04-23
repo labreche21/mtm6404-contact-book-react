@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../db";
-import ContactForm from "../Components/ContactForm";
+import ContactForm from "../components/ContactForm";
 
 export default function NewContactView() {
   const navigate = useNavigate();
