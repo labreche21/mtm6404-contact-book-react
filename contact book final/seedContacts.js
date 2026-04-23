@@ -1,10 +1,21 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+/**
+ * seedContacts.js
+ * ─────────────────────────────────────────────────────────────────────────────
+ * One-time script to seed your Firestore database with sample contacts.
+ *
+ * HOW TO RUN:
+ *   1. Make sure your Firebase config is filled in inside src/db.js
+ *   2. Run:  node seedContacts.js
+ *
+ * NOTE: This script uses ES modules. Make sure your package.json has
+ *       "type": "module", or rename this file to seedContacts.mjs
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
 
-// Your web app's Firebase configuration
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
+
+// ── Paste your Firebase config here ──────────────────────────────────────────
 const firebaseConfig = {
   apiKey: "AIzaSyBsmhQcwwBWc-QhPfbAAPd_6xPv1ScMt8E",
   authDomain: "contacts-3ac03.firebaseapp.com",
@@ -13,8 +24,8 @@ const firebaseConfig = {
   messagingSenderId: "929307186036",
   appId: "1:929307186036:web:20871b7aa0bf314f6ed221"
 };
+// ─────────────────────────────────────────────────────────────────────────────
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
@@ -77,7 +88,7 @@ const contacts = [
     address: "75 Laurier Ave E, Ottawa, ON",
   },
 ];
- 
+
 async function seed() {
   console.log("Seeding contacts…");
   for (const contact of contacts) {
@@ -87,10 +98,8 @@ async function seed() {
   console.log("\nDone! All contacts added to Firestore.");
   process.exit(0);
 }
- 
+
 seed().catch((err) => {
   console.error("Seed failed:", err);
   process.exit(1);
 });
-
-export default db;
