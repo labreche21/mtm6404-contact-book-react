@@ -18,4 +18,79 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+const contacts = [
+  {
+    firstName: "Alice",
+    lastName: "Chen",
+    email: "alice.chen@example.com",
+    phone: "(613) 555-0101",
+    company: "Algonquin College",
+    address: "1385 Woodroffe Ave, Nepean, ON",
+    notes: "Classmate from Web Dev course.",
+  },
+  {
+    firstName: "Marcus",
+    lastName: "Fitzgerald",
+    email: "marcus.fitz@example.com",
+    phone: "(613) 555-0182",
+    company: "Shopify",
+    address: "150 Elgin St, Ottawa, ON",
+  },
+  {
+    firstName: "Priya",
+    lastName: "Kapoor",
+    email: "priya.kapoor@example.com",
+    phone: "(416) 555-0239",
+    company: "RBC",
+    address: "20 King St W, Toronto, ON",
+    notes: "Contact for internship inquiry.",
+  },
+  {
+    firstName: "James",
+    lastName: "O'Brien",
+    email: "james.obrien@example.com",
+    phone: "(613) 555-0347",
+    company: "Ottawa Public Library",
+  },
+  {
+    firstName: "Sofia",
+    lastName: "Reyes",
+    email: "sofia.reyes@example.com",
+    phone: "(613) 555-0418",
+    company: "CBC",
+    address: "181 Queen St, Ottawa, ON",
+  },
+  {
+    firstName: "David",
+    lastName: "Tanaka",
+    email: "david.tanaka@example.com",
+    phone: "(613) 555-0556",
+    company: "BlackBerry",
+    notes: "Met at Ottawa tech meetup.",
+  },
+  {
+    firstName: "Nadia",
+    lastName: "Williams",
+    email: "nadia.williams@example.com",
+    phone: "(613) 555-0673",
+    company: "University of Ottawa",
+    address: "75 Laurier Ave E, Ottawa, ON",
+  },
+];
+ 
+async function seed() {
+  console.log("Seeding contacts…");
+  for (const contact of contacts) {
+    const ref = await addDoc(collection(db, "contacts"), contact);
+    console.log(`  ✓ Added ${contact.firstName} ${contact.lastName} (${ref.id})`);
+  }
+  console.log("\nDone! All contacts added to Firestore.");
+  process.exit(0);
+}
+ 
+seed().catch((err) => {
+  console.error("Seed failed:", err);
+  process.exit(1);
+});
+
 export default db;
