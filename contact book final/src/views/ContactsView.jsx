@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { Link } from "react-router-dom";
-import { db } from "../db";
+import { db } from "../utils/db";
 
 export default function ContactsView() {
   const [contacts, setContacts] = useState([]);

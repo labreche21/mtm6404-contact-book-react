@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { doc, getDoc, deleteDoc } from "firebase/firestore";
-import { db } from "../db";
+import { db } from "../utils/db";
 
 export default function ContactDetailView() {
   const { id } = useParams();

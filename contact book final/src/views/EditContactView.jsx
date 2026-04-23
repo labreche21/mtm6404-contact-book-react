@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { db } from "../db";
+import { db } from "../utils/db";
 import ContactForm from "../components/ContactForm";
 
 export default function EditContactView() {
