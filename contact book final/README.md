@@ -1,1 +1,1 @@
-PS i had a hard time with vite beacuse i dont know why when i close vs code and restart vs code every time it keeps on giving me errors when i do npm run dev so if the code is showing you blank with everything now you know its very infuriating 
+PS i had a hard time with vite beacuse i dont know why when i close vs code and restart vs code every time it keeps on giving me errors when i do npm run dev so if the code is showing you blank with errros on the console now you know its very infuriating 
