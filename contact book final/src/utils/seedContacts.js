@@ -16,6 +16,11 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 
 // ── Paste your Firebase config here ──────────────────────────────────────────
+// Import the functions you need from the SDKs you need
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBsmhQcwwBWc-QhPfbAAPd_6xPv1ScMt8E",
   authDomain: "contacts-3ac03.firebaseapp.com",
@@ -24,10 +29,10 @@ const firebaseConfig = {
   messagingSenderId: "929307186036",
   appId: "1:929307186036:web:20871b7aa0bf314f6ed221"
 };
-// ─────────────────────────────────────────────────────────────────────────────
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+export const db = getFirestore(app);
 
 const contacts = [
   {
