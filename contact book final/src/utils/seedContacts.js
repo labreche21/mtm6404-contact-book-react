@@ -21,6 +21,12 @@ import { getFirestore, collection, addDoc } from "firebase/firestore";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+// Import the functions you need from the SDKs you need
+
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBsmhQcwwBWc-QhPfbAAPd_6xPv1ScMt8E",
   authDomain: "contacts-3ac03.firebaseapp.com",
@@ -32,7 +38,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+const db = getFirestore(app);
 
 const contacts = [
   {
