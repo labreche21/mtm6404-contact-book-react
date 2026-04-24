@@ -1,9 +1,9 @@
 import { Routes, Route } from "react-router-dom";
-import "./App.css";
-import ContactsView from "./views/ContactsView";
-import ContactDetailView from "./views/ContactDetailView";
-import NewContactView from "./views/NewContactView";
-import EditContactView from "./views/EditContactView";
+import "../src/index.css";
+import ContactsView from "../src/views/ContactsView";
+import ContactDetailView from "../src/views/ContactDetailView";
+import NewContactView from "../src/views/NewContactView";
+import EditContactView from "../src/views/EditContactView";
 
 export default function App() {
   return (
