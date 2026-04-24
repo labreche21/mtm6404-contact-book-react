@@ -1,7 +1,51 @@
 import { useState, useEffect } from "react";
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import { collection, getDocs, addDoc, orderBy, query } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import { db } from "../utils/db";
+
+const DEFAULT_CONTACTS = [
+  {
+    firstName: "Alice",
+    lastName: "Chen",
+    email: "alice.chen@example.com",
+    phone: "(613) 555-0101",
+    company: "Algonquin College",
+    address: "1385 Woodroffe Ave, Nepean, ON",
+    notes: "Classmate from Web Dev course.",
+  },
+  {
+    firstName: "Marcus",
+    lastName: "Fitzgerald",
+    email: "marcus.fitz@example.com",
+    phone: "(613) 555-0182",
+    company: "Shopify",
+    address: "150 Elgin St, Ottawa, ON",
+  },
+  {
+    firstName: "Priya",
+    lastName: "Kapoor",
+    email: "priya.kapoor@example.com",
+    phone: "(416) 555-0239",
+    company: "RBC",
+    address: "20 King St W, Toronto, ON",
+    notes: "Contact for internship inquiry.",
+  },
+  {
+    firstName: "James",
+    lastName: "O'Brien",
+    email: "james.obrien@example.com",
+    phone: "(613) 555-0347",
+    company: "Ottawa Public Library",
+  },
+  {
+    firstName: "Sofia",
+    lastName: "Reyes",
+    email: "sofia.reyes@example.com",
+    phone: "(613) 555-0418",
+    company: "CBC",
+    address: "181 Queen St, Ottawa, ON",
+  },
+];
 
 export default function ContactsView() {
   const [contacts, setContacts] = useState([]);
@@ -12,8 +56,23 @@ export default function ContactsView() {
     const fetchContacts = async () => {
       const q = query(collection(db, "contacts"), orderBy("lastName"));
       const snapshot = await getDocs(q);
-      const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-      setContacts(data);
+
+      // If the database is empty, seed the default contacts
+      if (snapshot.empty) {
+        await Promise.all(
+          DEFAULT_CONTACTS.map((contact) =>
+            addDoc(collection(db, "contacts"), contact)
+          )
+        );
+        // Re-fetch after seeding
+        const seededSnapshot = await getDocs(q);
+        const data = seededSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+        setContacts(data);
+      } else {
+        const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+        setContacts(data);
+      }
+
       setLoading(false);
     };
     fetchContacts();
